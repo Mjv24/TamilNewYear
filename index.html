@@ -45,12 +45,40 @@
         }
         
         .word-card {
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            will-change: transform;
+            touch-action: pan-y;
+        }
+        
+        .word-card:hover,
+        .word-card:focus-within {
+            box-shadow: 0 36px 90px rgba(255, 190, 72, 0.16);
         }
         
         .word-card.revealed {
             opacity: 1;
             transform: translateY(0) scale(1);
+        }
+        
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        
+        header.header-glass {
+            width: 100vw;
+            left: 0;
+            right: 0;
+            background: rgba(7, 7, 8, 0.62);
+            backdrop-filter: blur(16px);
+        }
+        
+        .word-card .tamil-font {
+            line-height: 1.45 !important;
+            padding: 0.1em 0;
         }
         
         .flame {
@@ -296,20 +324,24 @@
     <div id="flower-container" class="absolute inset-0 pointer-events-none z-10"></div>
 
     <!-- header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-lg border-b border-yellow-400/20">
-        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-x-3">
-          
-                <div>
-                    
-                    <span class="block text-yellow-300 text-sm tracking-[3px]">ஜெயவிக்ணேஷ் முருகவேள்</span>
+    <header class="fixed top-0 left-0 right-0 z-50 header-glass border-b border-yellow-400/20">
+        <div class="max-w-screen-2xl mx-auto flex flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-8 sm:py-5">
+            <div class="flex items-center gap-3 min-w-0">
+
+                <div class="min-w-0">
+
+                    <span class="block text-yellow-300 text-sm tracking-[3px] truncate">ஜெயவிக்ணேஷ் முருகவேள்</span>
                 </div>
             </div>
-            <div class="flex flex-wrap items-center gap-2 text-xs justify-end w-full sm:w-auto">
-                <div id="autoscroll-toggle" onclick="toggleAutoScroll()" class="text-xs font-mono px-3 py-1.5 bg-yellow-400/10 text-yellow-300 rounded-3xl border border-yellow-400/30 flex items-center gap-x-2 cursor-pointer select-none">
+            <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto text-xs">
+                <!--<button onclick="restartExperience()" class="flex items-center gap-x-1 px-3 py-1.5 bg-white/10 hover:bg-white/15 border border-yellow-400/30 rounded-full text-yellow-200 transition-all active:scale-95">
+                    <span class="text-sm">⟳</span>
+                    <span class="font-normal tracking-widest">RESTART</span>
+                </button>-->
+                <button id="autoscroll-toggle" onclick="toggleAutoScroll()" class="flex items-center gap-x-2 px-3 py-1.5 bg-yellow-400/10 text-yellow-300 rounded-full border border-yellow-400/30 transition-all active:scale-95">
                     <div id="autoscroll-dot" class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
-                    <span id="autoscroll-label">AUTO-SCROLL ON</span>
-                </div>
+                    <span id="autoscroll-label" class="font-mono text-[11px]">AUTO-SCROLL ON</span>
+                </button>
             </div>
         </div>
     </header>
@@ -366,14 +398,14 @@
 
         <!-- WORD 1 -->
         <div class="section h-screen bg-zinc-950 flex items-center justify-center relative snap-start">
-            <div class="max-w-5xl mx-auto grid grid-cols-12 gap-16 px-12 items-center">
-                <div class="col-span-5 relative">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 px-4 md:px-12 items-center">
+                <div class="md:col-span-5 relative">
                     <div class="w-80 h-80 mx-auto bg-gradient-to-br from-amber-900/30 to-transparent rounded-[4rem] flex items-center justify-center border border-yellow-400/20">
                         <div class="text-[180px] leading-none">🪔</div>
                     </div>
                     <!-- <div class="absolute top-8 left-1/2 -translate-x-1/2 text-5xl flame">🔥</div>-->
                 </div>
-                <div class="col-span-7">
+                <div class="md:col-span-7">
                     <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">01 • INIYA</span>
                     </div>-->
@@ -393,8 +425,8 @@
 
         <!-- WORD 2 -->
         <div class="section h-screen bg-zinc-950 flex items-center justify-center relative snap-start">
-            <div class="max-w-5xl mx-auto grid grid-cols-12 gap-16 px-12 items-center">
-                <div class="col-span-7">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 px-4 md:px-12 items-center">
+                <div class="md:col-span-7">
                     <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">02 • TAMIL</span>
                     </div>-->
@@ -408,7 +440,7 @@
                         <p class="text-yellow-100/70 max-w-xs">Rooted in our rich Tamil culture, traditions and values.</p>
                     </div>
                 </div>
-                <div class="col-span-5">
+                <div class="md:col-span-5">
                     <div class="relative">
                         <div class="kolam w-80 h-80 mx-auto border-8 border-dashed border-amber-400/30 rounded-full flex items-center justify-center text-[160px]">🇮🇳</div>
                         <div class="absolute -top-6 -right-6 bg-zinc-900 text-amber-400 text-6xl p-6 rounded-3xl shadow-2xl border border-amber-400/40">🛕</div>
@@ -419,9 +451,9 @@
 
         <!-- WORD 3 -->
         <div class="section h-screen bg-zinc-950 flex items-center justify-center relative snap-start">
-            <div class="max-w-5xl mx-auto grid grid-cols-12 gap-16 px-12 items-center">
-                <div class="col-span-5 relative">
-                    <div onclick="triggerYearPop()" class="cursor-pointer w-96 h-96 mx-auto bg-zinc-900 rounded-3xl flex items-center justify-center text-center border-2 border-dashed border-yellow-400 hover:border-yellow-200 transition-colors">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 px-4 md:px-12 items-center">
+                <div class="md:col-span-5 relative">
+                    <div onclick="triggerYearPop()" class="cursor-pointer w-full max-w-[24rem] h-96 mx-auto bg-zinc-900 rounded-3xl flex items-center justify-center text-center border-2 border-dashed border-yellow-400 hover:border-yellow-200 transition-colors">
                         <div>
                             <div class="text-amber-400 text-sm tracking-widest mb-3">THE NEW YEAR</div>
                             <div id="big-year" class="tamil-font text-[160px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-500 leading-none">2026</div>
@@ -429,7 +461,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-7">
+                <div class="md:col-span-7">
                     <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">03 • PUTHANDU</span>
                     </div>-->
@@ -448,8 +480,8 @@
 
         <!-- WORD 4 -->
         <div class="section h-screen bg-zinc-950 flex items-center justify-center relative snap-start">
-            <div class="max-w-5xl mx-auto grid grid-cols-12 gap-16 px-12 items-center">
-                <div class="col-span-7">
+            <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 px-4 md:px-12 items-center">
+                <div class="md:col-span-7">
                     <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">04 • VAAZHTHUGAL</span>
                     </div>-->
@@ -463,7 +495,7 @@
                         <p class="text-yellow-100/70 max-w-xs">Wishing you and your loved ones endless joy, good health and abundance.</p>
                     </div>
                 </div>
-                <div class="col-span-5 flex flex-col gap-y-6">
+                <div class="md:col-span-5 flex flex-col gap-y-6">
                     <div class="flex-1 bg-gradient-to-br from-amber-900/20 to-transparent border border-yellow-400/30 rounded-3xl p-8 flex items-center">
                         <div class="text-center mx-auto">
                             <div class="text-6xl mb-4">🌾</div>
@@ -485,7 +517,7 @@
             <div class="absolute inset-0 bg-[conic-gradient(at_center,#451a03,#000,#451a03)] opacity-70"></div>
             <canvas id="fireworks-canvas" class="absolute inset-0 z-10 pointer-events-none"></canvas>
 
-            <div class="relative z-20 text-center px-10 max-w-xl">
+            <div class="relative z-20 text-center w-full max-w-xl px-4 sm:px-10">
                 <div class="inline-flex px-6 py-2 rounded-3xl bg-white/5 text-amber-400 text-sm mb-6 border border-amber-400/30 tamil-font">
                     இனிய தமிழ் புத்தாண்டு வாழ்த்துக்கள்
                 </div>
@@ -501,7 +533,7 @@
                 <button id="celebrate-btn" onclick="launchCelebration()" class="group relative px-8 py-4 sm:px-16 sm:py-7 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-400 text-zinc-950 font-bold text-xl sm:text-3xl rounded-3xl shadow-2xl shadow-yellow-500/50 transition-all active:scale-95 flex flex-wrap items-center justify-center gap-3 sm:gap-x-4 mx-auto w-full sm:w-auto max-w-full">
                     <span class="text-3xl sm:text-4xl group-active:rotate-12 transition-transform">🎉</span>
                     <span class="tamil-font" id="celebrate-text">கொண்டாடுங்கள்!</span>
-                    <span class="text-3xl sm:text-4xl group-active:-rotate-12 transition-transform">🪔</span>
+                    
                 </button>
 
                 <div class="text-[10px] text-yellow-400/60 mt-10 font-mono tracking-widest">
@@ -514,14 +546,14 @@
                 <div class="animate-bounce" style="animation-delay:320ms">🌸</div>
                 <div class="animate-bounce" style="animation-delay:180ms">🪷</div>
             </div>
-             <div class="flex flex-wrap items-center gap-2 text-xs justify-end w-full sm:w-auto">
-                <div onclick="restartExperience()" class="flex items-center gap-x-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-yellow-400/40 rounded-3xl cursor-pointer transition-all active:scale-95">
+            <div class="absolute bottom-20 left-1/2 z-20 -translate-x-1/2">
+                <button onclick="restartExperience()" class="flex items-center gap-x-2 px-3 py-2 bg-white/10 hover:bg-white/15 border border-yellow-400/40 rounded-full text-yellow-200 text-xs transition-all active:scale-95">
                     <span class="text-base">⟳</span>
-                    <span class="font-normal tracking-widest text-yellow-200">RESTART JOURNEY</span>
-                </div>
+                    <span class="font-normal tracking-widest">RESTART JOURNEY</span>
+                </button>
             </div>
 
-            
+
         </div>
     </div>
 
@@ -622,7 +654,7 @@
                 document.body.appendChild(p)
                 setTimeout(() => p.remove(), 7000)
             }
-            
+
         }
 
         function createInteractiveParticles(x, y, color = '#facc15', count = 32) {
@@ -636,6 +668,31 @@
                 document.body.appendChild(p)
                 setTimeout(() => p.remove(), 5200)
             }
+        }
+
+        function updateCardTilt(card, clientX, clientY) {
+            const rect = card.getBoundingClientRect()
+            const px = (clientX - rect.left) / rect.width
+            const py = (clientY - rect.top) / rect.height
+            const rotateY = (px - 0.5) * 16
+            const rotateX = -(py - 0.5) * 16
+            card.style.transform = `translateY(-2px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+        }
+
+        function resetCardTilt(card) {
+            card.style.transform = 'translateY(0) scale(1)'
+        }
+
+        function bindTiltToCards() {
+            document.querySelectorAll('.word-card').forEach(card => {
+                card.addEventListener('pointermove', e => {
+                    if (e.pointerType === 'mouse' || e.pointerType === 'touch') {
+                        updateCardTilt(card, e.clientX, e.clientY)
+                    }
+                })
+                card.addEventListener('pointerleave', () => resetCardTilt(card))
+                card.addEventListener('pointercancel', () => resetCardTilt(card))
+            })
         }
 
         /* ── INTERACTIONS ── */
@@ -931,6 +988,7 @@
         function main() {
             startFlowerRain()
             revealWords()
+            bindTiltToCards()
             setTimeout(() => {
                 document.querySelectorAll('.word-card').forEach(c => c.classList.add('revealed'))
             }, 2100)
