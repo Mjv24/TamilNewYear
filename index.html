@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ta">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,15 +12,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&family=Playfair+Display:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #facc15; }
-
+         :root {
+            --gold: #facc15;
+        }
         /* Tamil text always uses Noto Sans Tamil to avoid glyph clipping */
+        
         .tamil-font {
             font-family: 'Noto Sans Tamil', sans-serif;
             line-height: 1.35 !important;
         }
-
         /* All Tamil-script text in cards */
+        
         .word-card .tamil-font,
         .word-card [lang="ta"],
         .word-card .text-8xl {
@@ -27,70 +30,265 @@
             line-height: 1.4 !important;
             overflow: visible !important;
         }
-
         /* Fix: give Tamil text room to breathe so descenders/matras don't clip */
+        
         .tamil-large {
             font-family: 'Noto Sans Tamil', sans-serif;
             line-height: 1.5 !important;
             padding-bottom: 0.15em;
             display: block;
         }
-
+        
         .section {
             scroll-snap-align: start;
             scroll-snap-stop: always;
         }
-
+        
         .word-card {
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
+        
         .word-card.revealed {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
-
-        .flame { animation: flame-flicker 1.2s infinite alternate ease-in-out; }
-        @keyframes flame-flicker {
-            0%   { transform: scaleY(1) rotate(-8deg); }
-            100% { transform: scaleY(1.15) rotate(8deg); }
+        
+        .flame {
+            animation: flame-flicker 1.2s infinite alternate ease-in-out;
         }
-
-        .kolam { animation: rotate-kolam 25s linear infinite; }
-        @keyframes rotate-kolam { to { transform: translate(-50%, -50%) rotate(360deg); } }
-
+        
+        @keyframes flame-flicker {
+            0% {
+                transform: scaleY(1) rotate(-8deg);
+            }
+            100% {
+                transform: scaleY(1.15) rotate(8deg);
+            }
+        }
+        
+        .kolam {
+            animation: rotate-kolam 25s linear infinite;
+        }
+        
+        @keyframes rotate-kolam {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        
         .particle {
             position: absolute;
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             background: radial-gradient(circle, #facc15, #f59e0b);
             border-radius: 50%;
             pointer-events: none;
             animation: float-particle 8s linear forwards;
             box-shadow: 0 0 12px #facc15;
         }
+        
         @keyframes float-particle {
-            0%   { transform: translateY(0) scale(1);   opacity: 0.9; }
-            100% { transform: translateY(-800px) scale(0.2); opacity: 0; }
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(-800px) scale(0.2);
+                opacity: 0;
+            }
         }
-
+        
         .scroll-progress {
-            position: fixed; top: 0; left: 0; height: 3px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
             background: linear-gradient(to right, #eab308, #f59e0b);
-            z-index: 50; transition: width 0.1s;
+            z-index: 50;
+            transition: width 0.1s;
         }
-
-        .lamp { filter: drop-shadow(0 0 25px rgb(234 179 8)); }
-
+        
+        .lamp {
+            filter: drop-shadow(0 0 25px rgb(234 179 8));
+        }
         /* Auto-scroll pause indicator */
+        
         #autoscroll-badge {
-            position: fixed; bottom: 70px; left: 50%;
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
             transform: translateX(-50%);
-            font-size: 10px; letter-spacing: 3px; font-family: monospace;
-            color: #f59e0b; opacity: 0.7; z-index: 40;
+            font-size: 10px;
+            letter-spacing: 3px;
+            font-family: monospace;
+            color: #f59e0b;
+            opacity: 0.7;
+            z-index: 40;
             transition: opacity 0.5s;
+        }
+        /* Responsive Design */
+        
+        @media (max-width: 768px) {
+            /* Header adjustments */
+            header .flex.items-center.justify-between {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            header .flex.items-center.gap-x-3 {
+                flex-direction: column;
+                text-align: center;
+            }
+            header .flex.items-center.gap-x-6 {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            /* Section grids */
+            .grid-cols-12 {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .col-span-5,
+            .col-span-7 {
+                grid-column: span 1;
+            }
+            /* Text size adjustments */
+            .text-\[88px\] {
+                font-size: 3rem;
+                line-height: 1.2;
+            }
+            .text-7xl {
+                font-size: 2.5rem;
+            }
+            .text-6xl {
+                font-size: 2rem;
+            }
+            .text-5xl {
+                font-size: 1.5rem;
+            }
+            .text-4xl {
+                font-size: 1.25rem;
+            }
+            .text-3xl {
+                font-size: 1.125rem;
+            }
+            .text-2xl {
+                font-size: 1rem;
+            }
+            /* Padding and spacing */
+            .px-12 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .px-10 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .gap-16 {
+                gap: 2rem;
+            }
+            .mb-8 {
+                margin-bottom: 1rem;
+            }
+            .mt-16 {
+                margin-top: 2rem;
+            }
+            .mt-4 {
+                margin-top: 1rem;
+            }
+            /* Element sizes */
+            .w-80 {
+                width: 12rem;
+            }
+            .h-80 {
+                height: 12rem;
+            }
+            .w-96 {
+                width: 16rem;
+            }
+            .h-96 {
+                height: 16rem;
+            }
+            .text-9xl {
+                font-size: 4rem;
+            }
+            .text-\[180px\] {
+                font-size: 6rem;
+            }
+            .text-\[160px\] {
+                font-size: 5rem;
+            }
+            /* Navigation dots */
+            .fixed.right-8.top-1\/2 {
+                position: fixed;
+                bottom: 2rem;
+                left: 50%;
+                top: auto;
+                right: auto;
+                transform: translateX(-50%);
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+            .nav-dot {
+                width: 0.5rem;
+                height: 0.5rem;
+            }
+            /* Hide elements on mobile */
+            #autoscroll-badge {
+                display: none;
+            }
+            /* Button adjustments */
+            #celebrate-btn {
+                padding: 1rem 2rem;
+                font-size: 1.5rem;
+            }
+            /* Flower container */
+            .absolute.bottom-12 {
+                bottom: 1rem;
+                gap: 1rem;
+            }
+            .text-4xl {
+                font-size: 1.5rem;
+            }
+            /* Final slide */
+            .text-\[68px\] {
+                font-size: 2.5rem;
+            }
+            .max-w-xl {
+                max-width: 100%;
+            }
+            .max-w-2xl {
+                max-width: 100%;
+            }
+            .max-w-5xl {
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            .text-\[88px\] {
+                font-size: 2.5rem;
+            }
+            .text-7xl {
+                font-size: 2rem;
+            }
+            .text-6xl {
+                font-size: 1.75rem;
+            }
+            .text-5xl {
+                font-size: 1.25rem;
+            }
+            .text-4xl {
+                font-size: 1rem;
+            }
+            .text-3xl {
+                font-size: 0.875rem;
+            }
         }
     </style>
 </head>
+
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
     <div id="progress-bar" class="scroll-progress w-0"></div>
@@ -106,15 +304,13 @@
                     <span class="block text-yellow-300 text-sm tracking-[3px]">ஜெயவிக்ணேஷ் முருகவேள்</span>
                 </div>
             </div>
-            <div class="flex items-center gap-x-6 text-sm">
-                <div onclick="restartExperience()"
-                     class="flex items-center gap-x-2 px-5 py-2.5 bg-white/5 hover:bg-white/10 border border-yellow-400/40 rounded-3xl cursor-pointer transition-all active:scale-95">
-                    <span class="text-lg">⟳</span>
-                    <span class="font-medium tracking-widest text-yellow-200">RESTART JOURNEY</span>
+            <div class="flex items-center gap-x-4 text-xs">
+                <div onclick="restartExperience()" class="flex items-center gap-x-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-yellow-400/40 rounded-3xl cursor-pointer transition-all active:scale-95">
+                    <span class="text-base">⟳</span>
+                    <span class="font-normal tracking-widest text-yellow-200">RESTART JOURNEY</span>
                 </div>
-                <div id="autoscroll-toggle" onclick="toggleAutoScroll()"
-                     class="text-xs font-mono px-4 py-2 bg-yellow-400/10 text-yellow-300 rounded-3xl border border-yellow-400/30 flex items-center gap-x-2 cursor-pointer select-none">
-                    <div id="autoscroll-dot" class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <div id="autoscroll-toggle" onclick="toggleAutoScroll()" class="text-xs font-mono px-3 py-1.5 bg-yellow-400/10 text-yellow-300 rounded-3xl border border-yellow-400/30 flex items-center gap-x-2 cursor-pointer select-none">
+                    <div id="autoscroll-dot" class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
                     <span id="autoscroll-label">AUTO-SCROLL ON</span>
                 </div>
             </div>
@@ -122,24 +318,21 @@
     </header>
 
     <!-- main scroll container -->
-    <div id="scroll-container"
-         class="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth"
-         style="scrollbar-width: none;">
+    <div id="scroll-container" class="h-screen overflow-y-auto snap-y snap-mandatory scroll-smooth" style="scrollbar-width: none;">
 
         <!-- SLIDE 1: HERO -->
         <div class="section h-screen bg-gradient-to-b from-zinc-950 via-amber-950 to-zinc-950 flex items-center justify-center relative overflow-hidden">
             <div class="absolute inset-0 bg-[radial-gradient(at_center,#451a03_0%,transparent_70%)]"></div>
-           <!-- top-left lamp facing right -->
-    <!-- top-left lamp, mirrored so flame faces right (inward) -->
-<div class="absolute top-16 left-16 text-9xl lamp" style="transform: scaleX(-1); animation-delay:0ms">🪔</div>
-<!-- top-right lamp, default so flame faces left (inward) -->
-<div class="absolute top-16 right-16 text-9xl lamp" style="animation-delay:400ms">🪔</div>
-<!-- bottom center lamp facing front (rotated upward) 
+            <!-- top-left lamp facing right -->
+            <!-- top-left lamp, mirrored so flame faces right (inward) -->
+            <div class="absolute top-16 left-16 text-9xl lamp" style="transform: scaleX(-1); animation-delay:0ms">🪔</div>
+            <!-- top-right lamp, default so flame faces left (inward) -->
+            <div class="absolute top-16 right-16 text-9xl lamp" style="animation-delay:400ms">🪔</div>
+            <!-- bottom center lamp facing front (rotated upward) 
             <div class="absolute bottom-20 left-1/2 text-8xl lamp" style="transform: translateX(-50%) rotate(-45deg); animation-delay:1200ms">🪔</div>-->
 
             <!-- kolam rings -->
-            <div class="absolute top-1/2 left-1/2 kolam"
-                 style="width:384px;height:384px;border:1px solid rgba(253,224,71,0.1);border-radius:50%;transform:translate(-50%,-50%)">
+            <div class="absolute top-1/2 left-1/2 kolam" style="width:384px;height:384px;border:1px solid rgba(253,224,71,0.1);border-radius:50%;transform:translate(-50%,-50%)">
                 <div style="position:absolute;top:50%;left:50%;width:256px;height:256px;border:1px solid rgba(253,224,71,0.1);border-radius:50%;transform:translate(-50%,-50%)">
                     <div style="position:absolute;top:50%;left:50%;width:160px;height:160px;border:1px solid rgba(253,224,71,0.1);border-radius:50%;transform:translate(-50%,-50%)"></div>
                 </div>
@@ -151,8 +344,7 @@
                     APRIL 14 • 2026
                 </div>
 
-                <h1 onclick="lightDiya(this)"
-                    class="tamil-font text-[88px] leading-[1.3] font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-amber-400 cursor-pointer hover:scale-105 transition-transform pb-2">
+                <h1 onclick="lightDiya(this)" class="tamil-font text-[88px] leading-[1.3] font-bold text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 to-amber-400 cursor-pointer hover:scale-105 transition-transform pb-2">
                     இனிய<br>தமிழ் புத்தாண்டு
                 </h1>
 
@@ -184,14 +376,13 @@
                     <div class="w-80 h-80 mx-auto bg-gradient-to-br from-amber-900/30 to-transparent rounded-[4rem] flex items-center justify-center border border-yellow-400/20">
                         <div class="text-[180px] leading-none">🪔</div>
                     </div>
-                       <!-- <div class="absolute top-8 left-1/2 -translate-x-1/2 text-5xl flame">🔥</div>-->
+                    <!-- <div class="absolute top-8 left-1/2 -translate-x-1/2 text-5xl flame">🔥</div>-->
                 </div>
                 <div class="col-span-7">
-                     <!--<div class="mb-6">
+                    <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">01 • INIYA</span>
                     </div>-->
-                    <div onclick="highlightWord(this)" id="word-1"
-                         class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
+                    <div onclick="highlightWord(this)" id="word-1" class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
                         <div class="tamil-large text-7xl font-bold text-yellow-300 mb-4">இனிய</div>
                         <div class="flex items-baseline gap-x-4">
                             <div class="text-5xl text-white/80">Happy</div>
@@ -209,11 +400,10 @@
         <div class="section h-screen bg-zinc-950 flex items-center justify-center relative snap-start">
             <div class="max-w-5xl mx-auto grid grid-cols-12 gap-16 px-12 items-center">
                 <div class="col-span-7">
-                     <!--<div class="mb-6">
+                    <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">02 • TAMIL</span>
                     </div>-->
-                    <div onclick="highlightWord(this)" id="word-2"
-                         class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
+                    <div onclick="highlightWord(this)" id="word-2" class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
                         <div class="tamil-large text-7xl font-bold text-yellow-300 mb-4">தமிழ்</div>
                         <div class="flex items-baseline gap-x-4">
                             <div class="text-5xl text-white/80">Tamil</div>
@@ -236,22 +426,19 @@
         <div class="section h-screen bg-zinc-950 flex items-center justify-center relative snap-start">
             <div class="max-w-5xl mx-auto grid grid-cols-12 gap-16 px-12 items-center">
                 <div class="col-span-5 relative">
-                    <div onclick="triggerYearPop()"
-                         class="cursor-pointer w-96 h-96 mx-auto bg-zinc-900 rounded-3xl flex items-center justify-center text-center border-2 border-dashed border-yellow-400 hover:border-yellow-200 transition-colors">
+                    <div onclick="triggerYearPop()" class="cursor-pointer w-96 h-96 mx-auto bg-zinc-900 rounded-3xl flex items-center justify-center text-center border-2 border-dashed border-yellow-400 hover:border-yellow-200 transition-colors">
                         <div>
                             <div class="text-amber-400 text-sm tracking-widest mb-3">THE NEW YEAR</div>
-                            <div id="big-year"
-                                 class="tamil-font text-[160px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-500 leading-none">2026</div>
+                            <div id="big-year" class="tamil-font text-[160px] font-bold text-transparent bg-clip-text bg-gradient-to-br from-yellow-300 via-amber-300 to-yellow-500 leading-none">2026</div>
                             <div class="text-xs text-amber-400/70 mt-4">CHITHIRAI 1 • சித்திரை மாதம்</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-7">
-                     <!--<div class="mb-6">
+                    <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">03 • PUTHANDU</span>
                     </div>-->
-                    <div onclick="highlightWord(this)" id="word-3"
-                         class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
+                    <div onclick="highlightWord(this)" id="word-3" class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
                         <div class="tamil-large text-6xl font-bold text-yellow-300 mb-4">புத்தாண்டு</div>
                         <div class="flex items-baseline gap-x-4">
                             <div class="text-5xl text-white/80">New Year</div>
@@ -268,11 +455,10 @@
         <div class="section h-screen bg-zinc-950 flex items-center justify-center relative snap-start">
             <div class="max-w-5xl mx-auto grid grid-cols-12 gap-16 px-12 items-center">
                 <div class="col-span-7">
-                     <!--<div class="mb-6">
+                    <!--<div class="mb-6">
                         <span class="px-5 py-2 bg-yellow-400 text-zinc-950 text-sm font-bold rounded-3xl">04 • VAAZHTHUGAL</span>
                     </div>-->
-                    <div onclick="highlightWord(this)" id="word-4"
-                         class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
+                    <div onclick="highlightWord(this)" id="word-4" class="word-card opacity-0 translate-y-12 scale-75 bg-zinc-900 border border-transparent hover:border-yellow-400 p-10 rounded-3xl cursor-pointer">
                         <div class="tamil-large text-5xl font-bold text-yellow-300 mb-4">வாழ்த்துக்கள்</div>
                         <div class="flex items-baseline gap-x-4">
                             <div class="text-5xl text-white/80">Wishes</div>
@@ -317,8 +503,7 @@
                     May the Tamil New Year bring you health, wealth, peace and endless success.
                 </p>
 
-                <button id="celebrate-btn" onclick="launchCelebration()"
-                        class="group relative px-16 py-7 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-400 text-zinc-950 font-bold text-3xl rounded-3xl shadow-2xl shadow-yellow-500/50 transition-all active:scale-95 flex items-center gap-x-4 mx-auto">
+                <button id="celebrate-btn" onclick="launchCelebration()" class="group relative px-16 py-7 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-400 text-zinc-950 font-bold text-3xl rounded-3xl shadow-2xl shadow-yellow-500/50 transition-all active:scale-95 flex items-center gap-x-4 mx-auto">
                     <span class="text-4xl group-active:rotate-12 transition-transform">🎉</span>
                     <span class="tamil-font" id="celebrate-text">கொண்டாடுங்கள்!</span>
                     <span class="text-4xl group-active:-rotate-12 transition-transform">🪔</span>
@@ -335,9 +520,7 @@
                 <div class="animate-bounce" style="animation-delay:180ms">🪷</div>
             </div>
 
-            <div id="full-phrase"
-                 onclick="launchCelebration()"
-                 class="absolute bottom-8 right-8 text-right text-xs leading-tight max-w-[160px] text-amber-400/70 cursor-pointer hover:text-amber-300 transition-colors tamil-font">
+            <div id="full-phrase" onclick="launchCelebration()" class="absolute bottom-8 right-8 text-right text-xs leading-tight max-w-[160px] text-amber-400/70 cursor-pointer hover:text-amber-300 transition-colors tamil-font">
                 இனிய • தமிழ் • புத்தாண்டு • வாழ்த்துக்கள்<br>
                 <span class="text-2xl text-white">2026</span>
             </div>
@@ -354,8 +537,7 @@
         <div onclick="goToSlide(5)" class="nav-dot w-3 h-3 rounded-full bg-white/30 hover:bg-white/70 cursor-pointer transition-all"></div>
     </div>
 
-    <div id="toast"
-         class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 border border-yellow-400 text-yellow-200 text-sm px-6 py-4 rounded-3xl shadow-2xl flex items-center gap-x-3 z-[999]">
+    <div id="toast" class="hidden fixed bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 border border-yellow-400 text-yellow-200 text-sm px-6 py-4 rounded-3xl shadow-2xl flex items-center gap-x-3 z-[999]">
         <span id="toast-text"></span>
     </div>
 
@@ -414,36 +596,45 @@
         function createFlower() {
             const fc = document.getElementById('flower-container')
             const f = document.createElement('div')
-            f.textContent = ['🌼','🌺','🌸','🪷'][Math.floor(Math.random()*4)]
+            f.textContent = ['🌼', '🌺', '🌸', '🪷'][Math.floor(Math.random() * 4)]
             f.style.cssText = `position:absolute;left:${Math.random()*100}vw;top:-50px;font-size:${30+Math.random()*30}px;opacity:${Math.random()*0.6+0.4};z-index:5;transition:transform ${8+Math.random()*12}s linear,opacity 10s linear`
             fc.appendChild(f)
-            setTimeout(() => { f.style.transform = `translateY(${window.innerHeight+300}px) rotate(${Math.random()*800-200}deg)`; f.style.opacity='0' }, 100)
+            setTimeout(() => {
+                f.style.transform = `translateY(${window.innerHeight+300}px) rotate(${Math.random()*800-200}deg)`;
+                f.style.opacity = '0'
+            }, 100)
             setTimeout(() => f.remove(), 20000)
         }
-        function startFlowerRain() { setInterval(() => { if (Math.random()>0.4) createFlower() }, 180) }
+
+        function startFlowerRain() {
+            setInterval(() => {
+                if (Math.random() > 0.4) createFlower()
+            }, 180)
+        }
 
         /* ── PARTICLES ── */
         function createSparkles(e) {
             const r = e.currentTarget.getBoundingClientRect()
-            for (let i=0; i<28; i++) {
+            for (let i = 0; i < 28; i++) {
                 const p = document.createElement('div')
                 p.className = 'particle'
-                p.style.left = (r.left + Math.random()*r.width) + 'px'
-                p.style.top  = (r.top  + Math.random()*r.height - 30) + 'px'
-                p.style.animationDuration = (3+Math.random()*4)+'s'
+                p.style.left = (r.left + Math.random() * r.width) + 'px'
+                p.style.top = (r.top + Math.random() * r.height - 30) + 'px'
+                p.style.animationDuration = (3 + Math.random() * 4) + 's'
                 document.body.appendChild(p)
                 setTimeout(() => p.remove(), 7000)
             }
             showToast('🌟 Sparkles sent to the heavens!', 1600)
         }
 
-        function createInteractiveParticles(x, y, color='#facc15', count=32) {
-            for (let i=0; i<count; i++) {
+        function createInteractiveParticles(x, y, color = '#facc15', count = 32) {
+            for (let i = 0; i < count; i++) {
                 const p = document.createElement('div')
                 p.className = 'particle'
-                p.style.left = x+'px'; p.style.top = y+'px'
+                p.style.left = x + 'px';
+                p.style.top = y + 'px'
                 p.style.background = `radial-gradient(circle, ${color}, #eab308)`
-                p.style.animationDuration = (2.2+Math.random()*3.8)+'s'
+                p.style.animationDuration = (2.2 + Math.random() * 3.8) + 's'
                 document.body.appendChild(p)
                 setTimeout(() => p.remove(), 5200)
             }
@@ -451,9 +642,12 @@
 
         /* ── INTERACTIONS ── */
         function lightDiya(el) {
-            el.style.transition = 'transform 400ms'; el.style.transform = 'scale(1.1)'
-            setTimeout(() => el.style.transform='scale(1)', 420)
-            for (let i=0;i<5;i++) setTimeout(() => createSparkles({currentTarget:el}), i*80)
+            el.style.transition = 'transform 400ms';
+            el.style.transform = 'scale(1.1)'
+            setTimeout(() => el.style.transform = 'scale(1)', 420)
+            for (let i = 0; i < 5; i++) setTimeout(() => createSparkles({
+                currentTarget: el
+            }), i * 80)
             showToast('🪔 The lamp has been lit!', 2200)
         }
 
@@ -462,67 +656,102 @@
             el.style.transform = 'scale(1.08) rotate(2deg)'
             el.style.borderColor = '#fcd34d'
             el.style.boxShadow = '0 0 60px -10px rgb(234 179 8)'
-            setTimeout(() => { el.style.transform='scale(1) rotate(0deg)'; el.style.boxShadow='none' }, 520)
+            setTimeout(() => {
+                el.style.transform = 'scale(1) rotate(0deg)';
+                el.style.boxShadow = 'none'
+            }, 520)
             const r = el.getBoundingClientRect()
-            createInteractiveParticles(r.left+r.width/2, r.top+r.height/2-30, '#fcd34d', 42)
-            setTimeout(() => createInteractiveParticles(r.left+r.width/2-60, r.top+r.height/2+40, '#67e8f9', 18), 80)
-            if (!el.classList.contains('revealed')) { el.classList.add('revealed'); showToast('🌟 Beautiful wish received', 1300) }
+            createInteractiveParticles(r.left + r.width / 2, r.top + r.height / 2 - 30, '#fcd34d', 42)
+            setTimeout(() => createInteractiveParticles(r.left + r.width / 2 - 60, r.top + r.height / 2 + 40, '#67e8f9', 18), 80)
+            if (!el.classList.contains('revealed')) {
+                el.classList.add('revealed');
+                showToast('🌟 Beautiful wish received', 1300)
+            }
         }
 
         function triggerYearPop() {
             const y = document.getElementById('big-year')
-            y.style.transition='all 700ms'; y.style.transform='scale(1.3) rotate(8deg)'; y.style.filter='brightness(1.6)'
-            setTimeout(() => { y.style.transform='scale(1) rotate(0deg)'; y.style.filter='none' }, 800)
+            y.style.transition = 'all 700ms';
+            y.style.transform = 'scale(1.3) rotate(8deg)';
+            y.style.filter = 'brightness(1.6)'
+            setTimeout(() => {
+                y.style.transform = 'scale(1) rotate(0deg)';
+                y.style.filter = 'none'
+            }, 800)
             showToast('✨ The new year has arrived!', 1800)
         }
 
         /* ── TOAST ── */
-        function showToast(msg, timeout=2400) {
-            const t = document.getElementById('toast'), tx = document.getElementById('toast-text')
-            tx.innerHTML = msg; t.classList.remove('hidden'); t.style.transform='translate(-50%,0)'
-            setTimeout(() => { t.style.transform='translate(-50%,80px)'; setTimeout(() => t.classList.add('hidden'), 600) }, timeout)
+        function showToast(msg, timeout = 2400) {
+            const t = document.getElementById('toast'),
+                tx = document.getElementById('toast-text')
+            tx.innerHTML = msg;
+            t.classList.remove('hidden');
+            t.style.transform = 'translate(-50%,0)'
+            setTimeout(() => {
+                t.style.transform = 'translate(-50%,80px)';
+                setTimeout(() => t.classList.add('hidden'), 600)
+            }, timeout)
         }
 
         /* ── NAVIGATION ── */
         function nextSlide() {
             const sc = document.getElementById('scroll-container')
             const pos = Math.round(sc.scrollTop / window.innerHeight)
-            sc.scrollTo({ top: (pos+1)*window.innerHeight, behavior:'smooth' })
+            sc.scrollTo({
+                top: (pos + 1) * window.innerHeight,
+                behavior: 'smooth'
+            })
         }
 
         function goToSlide(n) {
-            document.getElementById('scroll-container').scrollTo({ top: n*window.innerHeight, behavior:'smooth' })
+            document.getElementById('scroll-container').scrollTo({
+                top: n * window.innerHeight,
+                behavior: 'smooth'
+            })
         }
 
         function updateProgress() {
             const sc = document.getElementById('scroll-container')
             const scrollH = sc.scrollHeight - sc.clientHeight
             const pct = scrollH > 0 ? (sc.scrollTop / scrollH) * 100 : 0
-            document.getElementById('progress-bar').style.width = pct+'%'
+            document.getElementById('progress-bar').style.width = pct + '%'
             const dots = document.querySelectorAll('.nav-dot')
             currentSlide = Math.round(sc.scrollTop / window.innerHeight)
-            dots.forEach((d,i) => {
-                if (i===currentSlide) { d.classList.add('!bg-yellow-400','scale-125'); d.classList.remove('bg-white/30') }
-                else { d.classList.remove('!bg-yellow-400','scale-125'); d.classList.add('bg-white/30') }
+            dots.forEach((d, i) => {
+                if (i === currentSlide) {
+                    d.classList.add('!bg-yellow-400', 'scale-125');
+                    d.classList.remove('bg-white/30')
+                } else {
+                    d.classList.remove('!bg-yellow-400', 'scale-125');
+                    d.classList.add('bg-white/30')
+                }
             })
         }
 
         /* ── WORD REVEAL ── */
         function revealWords() {
             const observer = new IntersectionObserver(entries => {
-                entries.forEach(e => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('revealed'), 120) })
-            }, { threshold: 0.6 })
+                entries.forEach(e => {
+                    if (e.isIntersecting) setTimeout(() => e.target.classList.add('revealed'), 120)
+                })
+            }, {
+                threshold: 0.6
+            })
             document.querySelectorAll('.word-card').forEach(c => observer.observe(c))
         }
 
         /* ── RESTART ── */
         function restartExperience() {
             celebrationFired = false
-            document.getElementById('scroll-container').scrollTo({ top:0, behavior:'smooth' })
+            document.getElementById('scroll-container').scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
             setTimeout(() => {
-                document.querySelectorAll('.word-card').forEach((c,i) => {
+                document.querySelectorAll('.word-card').forEach((c, i) => {
                     c.classList.remove('revealed')
-                    c.style.transitionDelay = (i*120)+'ms'
+                    c.style.transitionDelay = (i * 120) + 'ms'
                     setTimeout(() => c.classList.add('revealed'), 1200)
                 })
                 if (!autoScrollEnabled) toggleAutoScroll()
@@ -534,90 +763,163 @@
         /* ── FIREWORKS ── */
         class Firework {
             constructor(x, y) {
-                this.x=x; this.y=y; this.sx=x; this.sy=window.innerHeight
-                this.speed=8+Math.random()*7; this.hue=Math.random()*40+10
-                this.exploded=false; this.particles=[]
+                this.x = x;
+                this.y = y;
+                this.sx = x;
+                this.sy = window.innerHeight
+                this.speed = 8 + Math.random() * 7;
+                this.hue = Math.random() * 40 + 10
+                this.exploded = false;
+                this.particles = []
             }
             update() {
                 if (!this.exploded) {
                     this.sy -= this.speed
-                    if (this.sy < this.y) { this.exploded=true; this.createExplosion() }
+                    if (this.sy < this.y) {
+                        this.exploded = true;
+                        this.createExplosion()
+                    }
                 } else {
-                    for (let i=this.particles.length-1; i>=0; i--) {
-                        const p=this.particles[i]; p.vy+=0.12; p.x+=p.vx; p.y+=p.vy; p.life--
-                        if (p.life<=0) this.particles.splice(i,1)
+                    for (let i = this.particles.length - 1; i >= 0; i--) {
+                        const p = this.particles[i];
+                        p.vy += 0.12;
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.life--
+                            if (p.life <= 0) this.particles.splice(i, 1)
                     }
                 }
             }
             createExplosion() {
-                for (let i=0; i<62; i++) {
-                    const a=(Math.PI*2/62)*i, v=2.5+Math.random()*5.5
-                    this.particles.push({ x:this.x, y:this.y, vx:Math.cos(a)*v, vy:Math.sin(a)*v-4, life:55+Math.random()*35, hue:this.hue+(Math.random()*30-15), size:3.5 })
+                for (let i = 0; i < 62; i++) {
+                    const a = (Math.PI * 2 / 62) * i,
+                        v = 2.5 + Math.random() * 5.5
+                    this.particles.push({
+                        x: this.x,
+                        y: this.y,
+                        vx: Math.cos(a) * v,
+                        vy: Math.sin(a) * v - 4,
+                        life: 55 + Math.random() * 35,
+                        hue: this.hue + (Math.random() * 30 - 15),
+                        size: 3.5
+                    })
                 }
-                for (let i=0; i<14; i++)
-                    this.particles.push({ x:this.x, y:this.y, vx:(Math.random()-0.5)*13, vy:(Math.random()-1.2)*13, life:85, hue:45, size:2.8 })
+                for (let i = 0; i < 14; i++)
+                    this.particles.push({
+                        x: this.x,
+                        y: this.y,
+                        vx: (Math.random() - 0.5) * 13,
+                        vy: (Math.random() - 1.2) * 13,
+                        life: 85,
+                        hue: 45,
+                        size: 2.8
+                    })
             }
             draw() {
-                const ctx=fireworksCtx
+                const ctx = fireworksCtx
                 if (!this.exploded) {
-                    ctx.save(); ctx.shadowBlur=22; ctx.shadowColor=`hsl(${this.hue},100%,70%)`
-                    ctx.fillStyle=`hsl(${this.hue},90%,75%)`; ctx.fillRect(this.sx-2,this.sy-2,4,22); ctx.restore()
+                    ctx.save();
+                    ctx.shadowBlur = 22;
+                    ctx.shadowColor = `hsl(${this.hue},100%,70%)`
+                    ctx.fillStyle = `hsl(${this.hue},90%,75%)`;
+                    ctx.fillRect(this.sx - 2, this.sy - 2, 4, 22);
+                    ctx.restore()
                 } else {
                     for (const p of this.particles) {
-                        const alpha=p.life/75; ctx.save(); ctx.globalAlpha=alpha>0.6?1:alpha*1.4
-                        ctx.shadowBlur=8; ctx.shadowColor=`hsl(${p.hue},100%,75%)`
-                        ctx.fillStyle=`hsl(${p.hue},95%,82%)`; ctx.fillRect(p.x,p.y,p.size,p.size); ctx.restore()
+                        const alpha = p.life / 75;
+                        ctx.save();
+                        ctx.globalAlpha = alpha > 0.6 ? 1 : alpha * 1.4
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = `hsl(${p.hue},100%,75%)`
+                        ctx.fillStyle = `hsl(${p.hue},95%,82%)`;
+                        ctx.fillRect(p.x, p.y, p.size, p.size);
+                        ctx.restore()
                     }
                 }
             }
         }
 
-        function launchFireworks(count=6) {
-            for (let i=0; i<count; i++) {
+        function launchFireworks(count = 6) {
+            for (let i = 0; i < count; i++) {
                 setTimeout(() => {
-                    fireworksParticles.push(new Firework(Math.random()*window.innerWidth, 120+Math.random()*(window.innerHeight*0.4)))
-                }, i*65)
+                    fireworksParticles.push(new Firework(Math.random() * window.innerWidth, 120 + Math.random() * (window.innerHeight * 0.4)))
+                }, i * 65)
             }
         }
 
         function animateFireworks() {
-            fireworksCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height)
-            for (let i=fireworksParticles.length-1; i>=0; i--) {
-                const fw=fireworksParticles[i]; fw.update(); fw.draw()
-                if (fw.exploded && fw.particles.length===0) fireworksParticles.splice(i,1)
+            fireworksCtx.clearRect(0, 0, fireworksCanvas.width, fireworksCanvas.height)
+            for (let i = fireworksParticles.length - 1; i >= 0; i--) {
+                const fw = fireworksParticles[i];
+                fw.update();
+                fw.draw()
+                if (fw.exploded && fw.particles.length === 0) fireworksParticles.splice(i, 1)
             }
-            if (Math.random()<0.1 && fireworksParticles.length<4) {
-                fireworksParticles.push(new Firework(Math.random()*fireworksCanvas.width, 80+Math.random()*220))
+            if (Math.random() < 0.1 && fireworksParticles.length < 4) {
+                fireworksParticles.push(new Firework(Math.random() * fireworksCanvas.width, 80 + Math.random() * 220))
             }
             requestAnimationFrame(animateFireworks)
         }
 
         function resizeCanvas() {
             if (!fireworksCanvas) return
-            fireworksCanvas.width=window.innerWidth; fireworksCanvas.height=window.innerHeight
+            fireworksCanvas.width = window.innerWidth;
+            fireworksCanvas.height = window.innerHeight
         }
 
         /* ── CELEBRATE ── */
         function launchCelebration() {
             const btn = document.getElementById('celebrate-btn')
-            btn.style.transform='scale(0.85)'; setTimeout(()=>btn.style.transform='scale(1)',120)
-            confetti({ particleCount:280, spread:90, origin:{y:0.6}, colors:['#facc15','#eab308','#ca8a04','#854d0e','#22c55e'] })
-            confetti({ particleCount:120, angle:60, spread:45, origin:{x:0.1,y:0.6}, colors:['#eab308','#f59e0b'] })
-            confetti({ particleCount:120, angle:120, spread:45, origin:{x:0.9,y:0.6}, colors:['#eab308','#f59e0b'] })
+            btn.style.transform = 'scale(0.85)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 120)
+            confetti({
+                particleCount: 280,
+                spread: 90,
+                origin: {
+                    y: 0.6
+                },
+                colors: ['#facc15', '#eab308', '#ca8a04', '#854d0e', '#22c55e']
+            })
+            confetti({
+                particleCount: 120,
+                angle: 60,
+                spread: 45,
+                origin: {
+                    x: 0.1,
+                    y: 0.6
+                },
+                colors: ['#eab308', '#f59e0b']
+            })
+            confetti({
+                particleCount: 120,
+                angle: 120,
+                spread: 45,
+                origin: {
+                    x: 0.9,
+                    y: 0.6
+                },
+                colors: ['#eab308', '#f59e0b']
+            })
             launchFireworks(14)
             showToast('🎊 HAPPY TAMIL NEW YEAR 2026 🎊', 4200)
-            const ph=document.getElementById('full-phrase')
-            ph.style.transition='all 300ms'; ph.style.transform='scale(1.15)'
-            setTimeout(()=>ph.style.transform='scale(1)',400)
-            setTimeout(()=>{ if(Math.random()>0.3) launchFireworks(4) },650)
+            const ph = document.getElementById('full-phrase')
+            ph.style.transition = 'all 300ms';
+            ph.style.transform = 'scale(1.15)'
+            setTimeout(() => ph.style.transform = 'scale(1)', 400)
+            setTimeout(() => {
+                if (Math.random() > 0.3) launchFireworks(4)
+            }, 650)
         }
 
         /* ── KEYBOARD ── */
         function addKeyboardControls() {
             document.addEventListener('keydown', e => {
-                if (e.metaKey && e.key==='k') { e.preventDefault(); launchCelebration() }
-                if (e.key==='ArrowRight') nextSlide()
-                if (e.key==='r'||e.key==='R') restartExperience()
+                if (e.metaKey && e.key === 'k') {
+                    e.preventDefault();
+                    launchCelebration()
+                }
+                if (e.key === 'ArrowRight') nextSlide()
+                if (e.key === 'r' || e.key === 'R') restartExperience()
             })
         }
 
@@ -625,7 +927,9 @@
         function main() {
             startFlowerRain()
             revealWords()
-            setTimeout(() => { document.querySelectorAll('.word-card').forEach(c=>c.classList.add('revealed')) }, 2100)
+            setTimeout(() => {
+                document.querySelectorAll('.word-card').forEach(c => c.classList.add('revealed'))
+            }, 2100)
 
             const sc = document.getElementById('scroll-container')
             sc.addEventListener('scroll', updateProgress)
@@ -648,9 +952,11 @@
                         if (autoScrollEnabled && currentSlide < FINAL_SLIDE_INDEX) startAutoScroll()
                     }, 4000)
                 }
-            }, { passive: true })
+            }, {
+                passive: true
+            })
 
-            setTimeout(() => showToast('🪔 <span style="font-family:\'Noto Sans Tamil\',sans-serif">இனிய தமிழ் புத்தாண்டு வாழ்த்துக்கள் 2026 - ஜெயவிக்ணேஷ் முருகவேள் </span>', 2800), 900)
+            setTimeout(() => showToast('🪔 <span style="font-family:\'Noto Sans Tamil\',sans-serif">இனிய தமிழ் புத்தாண்டு வாழ்த்துக்கள் 2026  </span>', 2800), 900)
 
             // Start auto-scroll after a brief pause
             setTimeout(() => startAutoScroll(), 2000)
@@ -659,4 +965,5 @@
         window.onload = main
     </script>
 </body>
+
 </html>
