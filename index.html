@@ -130,11 +130,12 @@
         <div class="section h-screen bg-gradient-to-b from-zinc-950 via-amber-950 to-zinc-950 flex items-center justify-center relative overflow-hidden">
             <div class="absolute inset-0 bg-[radial-gradient(at_center,#451a03_0%,transparent_70%)]"></div>
            <!-- top-left lamp facing right -->
-            <div class="absolute top-20 left-20 text-7xl lamp" style="transform: scaleX(-1); animation-delay:0ms">🪔</div>
-<!-- top-right lamp facing left (default direction) -->
-            <div class="absolute top-20 right-20 text-7xl lamp" style="animation-delay:400ms">🪔</div>
-<!-- bottom center lamp facing front (rotated upward) -->
-            <div class="absolute bottom-20 left-1/2 text-8xl lamp" style="transform: translateX(-50%) rotate(-45deg); animation-delay:1200ms">🪔</div>
+    <!-- top-left lamp, mirrored so flame faces right (inward) -->
+<div class="absolute top-16 left-16 text-9xl lamp" style="transform: scaleX(-1); animation-delay:0ms">🪔</div>
+<!-- top-right lamp, default so flame faces left (inward) -->
+<div class="absolute top-16 right-16 text-9xl lamp" style="animation-delay:400ms">🪔</div>
+<!-- bottom center lamp facing front (rotated upward) 
+            <div class="absolute bottom-20 left-1/2 text-8xl lamp" style="transform: translateX(-50%) rotate(-45deg); animation-delay:1200ms">🪔</div>-->
 
             <!-- kolam rings -->
             <div class="absolute top-1/2 left-1/2 kolam"
