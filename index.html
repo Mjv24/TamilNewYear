@@ -297,19 +297,20 @@
 
     <!-- header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-lg border-b border-yellow-400/20">
-        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex items-center justify-between">
+        <div class="max-w-screen-2xl mx-auto px-8 py-5 flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-x-3">
-              
+          
                 <div>
+                    
                     <span class="block text-yellow-300 text-sm tracking-[3px]">ஜெயவிக்ணேஷ் முருகவேள்</span>
                 </div>
             </div>
-            <div class="flex items-center gap-x-2 text-xs">
-                <div onclick="restartExperience()" class="flex items-center gap-x-2 px-2 py-1 bg-white/5 hover:bg-white/10 border border-yellow-400/40 rounded-3xl cursor-pointer transition-all active:scale-95">
+            <div class="flex flex-wrap items-center gap-2 text-xs justify-end w-full sm:w-auto">
+                <div onclick="restartExperience()" class="flex items-center gap-x-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-yellow-400/40 rounded-3xl cursor-pointer transition-all active:scale-95">
                     <span class="text-base">⟳</span>
                     <span class="font-normal tracking-widest text-yellow-200">RESTART JOURNEY</span>
                 </div>
-                <div id="autoscroll-toggle" onclick="toggleAutoScroll()" class="text-xs font-mono px-2 py-1 bg-yellow-400/10 text-yellow-300 rounded-3xl border border-yellow-400/30 flex items-center gap-x-2 cursor-pointer select-none">
+                <div id="autoscroll-toggle" onclick="toggleAutoScroll()" class="text-xs font-mono px-3 py-1.5 bg-yellow-400/10 text-yellow-300 rounded-3xl border border-yellow-400/30 flex items-center gap-x-2 cursor-pointer select-none">
                     <div id="autoscroll-dot" class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></div>
                     <span id="autoscroll-label">AUTO-SCROLL ON</span>
                 </div>
@@ -501,10 +502,10 @@
                     May the Tamil New Year bring you health, wealth, peace and endless success.
                 </p>
 
-                <button id="celebrate-btn" onclick="launchCelebration()" class="group relative px-16 py-7 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-400 text-zinc-950 font-bold text-3xl rounded-3xl shadow-2xl shadow-yellow-500/50 transition-all active:scale-95 flex items-center gap-x-4 mx-auto">
-                    <span class="text-4xl group-active:rotate-12 transition-transform">🎉</span>
+                <button id="celebrate-btn" onclick="launchCelebration()" class="group relative px-8 py-4 sm:px-16 sm:py-7 bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-400 text-zinc-950 font-bold text-xl sm:text-3xl rounded-3xl shadow-2xl shadow-yellow-500/50 transition-all active:scale-95 flex flex-wrap items-center justify-center gap-3 sm:gap-x-4 mx-auto w-full sm:w-auto max-w-full">
+                    <span class="text-3xl sm:text-4xl group-active:rotate-12 transition-transform">🎉</span>
                     <span class="tamil-font" id="celebrate-text">கொண்டாடுங்கள்!</span>
-                    <span class="text-4xl group-active:-rotate-12 transition-transform">🪔</span>
+                    <span class="text-3xl sm:text-4xl group-active:-rotate-12 transition-transform">🪔</span>
                 </button>
 
                 <div class="text-[10px] text-yellow-400/60 mt-10 font-mono tracking-widest">
@@ -518,7 +519,7 @@
                 <div class="animate-bounce" style="animation-delay:180ms">🪷</div>
             </div>
 
-        
+            
         </div>
     </div>
 
@@ -619,7 +620,7 @@
                 document.body.appendChild(p)
                 setTimeout(() => p.remove(), 7000)
             }
-            showToast('🌟 Sparkles sent to the heavens!', 1600)
+            
         }
 
         function createInteractiveParticles(x, y, color = '#facc15', count = 32) {
@@ -903,7 +904,6 @@
                 colors: ['#eab308', '#f59e0b']
             })
             launchFireworks(14)
-            //showToast('🎊 HAPPY TAMIL NEW YEAR 2026 🎊', 4200)
             const ph = document.getElementById('full-phrase')
             ph.style.transition = 'all 300ms';
             ph.style.transform = 'scale(1.15)'
@@ -957,8 +957,6 @@
             }, {
                 passive: true
             })
-
-           // setTimeout(() => showToast('🪔 <span style="font-family:\'Noto Sans Tamil\',sans-serif">இனிய தமிழ் புத்தாண்டு வாழ்த்துக்கள் 2026  </span>', 2800), 900)
 
             // Start auto-scroll after a brief pause
             setTimeout(() => startAutoScroll(), 2000)
